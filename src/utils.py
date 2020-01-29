@@ -110,7 +110,7 @@ def post_processing(logits, image_size, gt_classes, anchors, conf_threshold, nms
         keep_len = len(keep) - 1
         for i in range(1, keep_len):
             if keep[i] > 0:
-                keep -= conflicting[i]
+                keep = keep - conflicting[i].int()
         if torch.cuda.is_available():
             keep = keep.cuda()
 
